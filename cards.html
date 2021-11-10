@@ -1,0 +1,287 @@
+
+    <!-- Cards Info -->
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-6 col-md-8 col-12 my-5">
+                <img src="img/logo/ygo.png" class="img-fluid">
+            </div>
+        </div>
+        <span class="text-muted text-center text-mono">Get <span id="result-length"></span> results data</span>
+        <div class="my-2">
+            <form id="search">
+                <div class="input-group mb-3">
+                    <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Filter</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><span class="d-inline-block dropdown-item fw-bold">Search By</span></li>
+                        <li><hr class="dropdown-divider text-primary"></li>
+                        <li>
+                            <span class="d-inline-block dropdown-item fw-bold data-search" data-search="name" data-placeholder="Name of Card : Stardust Dragon, Dark Magician, Blue-Eyes White Dragon ....">Name</span>
+                        </li>
+                        <li>
+                            <span class="d-inline-block dropdown-item fw-bold data-search" data-search="archetype" data-placeholder="Name of Archetype : Dark Magician, Elemental Hero, Stardust ...">Archetype</span>
+                        </li>
+                    </ul>
+                    <input type="search" name="keyword" class="form-control" data-keyword="name" placeholder="Name of Card : Stardust Dragon, Dark Magician, Blue-Eyes White Dragon ..."> 
+                    <button class="btn btn-lg" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+        <div class="my-2">
+            <div class="accordion" id="filter">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                      Filter
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                      <form id="form-filter">
+                        <h6 class="text-mono text-primary fw-bold mb-3">Type</h6>
+                        <div class="row align-items-center">
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Effect Monster" id="Effect Monster">
+                                    <label class="form-check-label ms-2" for="Effect Monster">
+                                      Effect Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Flip Effect Monster" id="Flip Effect Monster">
+                                    <label class="form-check-label ms-2" for="Flip Effect Monster">
+                                      Flip Effect Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Flip Tuner Effect Monster" id="Flip Tuner Effect Monster">
+                                    <label class="form-check-label ms-2" for="Flip Tuner Effect Monster">
+                                      Flip Tuner Effect Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Gemini Monster" id="Gemini Monster">
+                                    <label class="form-check-label ms-2" for="Gemini Monster">
+                                      Gemini Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Normal Monster" id="Normal Monster">
+                                    <label class="form-check-label ms-2" for="Normal Monster">
+                                      Normal Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Normal Tuner Monster" id="Normal Tuner Monster">
+                                    <label class="form-check-label ms-2" for="Normal Tuner Monster">
+                                      Normal Tuner Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Pendulum Effect Monster" id="Pendulum Effect Monster">
+                                    <label class="form-check-label ms-2" for="Pendulum Effect Monster">
+                                      Pendulum Effect Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Pendulum Flip Effect Monster" id="Pendulum Flip Effect Monster">
+                                    <label class="form-check-label ms-2" for="Pendulum Flip Effect Monster">
+                                      Pendulum Flip Effect Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Pendulum Tuner Effect Monster" id="Pendulum Tuner Effect Monster">
+                                    <label class="form-check-label ms-2" for="Pendulum Tuner Effect Monster">
+                                      Pendulum Tuner Effect Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Ritual Effect Monster" id="Ritual Effect Monster">
+                                    <label class="form-check-label ms-2" for="Ritual Effect Monster">
+                                      Ritual Effect Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Ritual Monster" id="Ritual Monster">
+                                    <label class="form-check-label ms-2" for="Ritual Monster">
+                                      Ritual Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Skill Card" id="Skill Card">
+                                    <label class="form-check-label ms-2" for="Skill Card">
+                                      Skill Card
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Spell Card" id="Spell Card">
+                                    <label class="form-check-label ms-2" for="Spell Card">
+                                      Spell Card
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Spirit Monster" id="Spirit Monster">
+                                    <label class="form-check-label ms-2" for="Spirit Monster">
+                                      Spirit Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Toon Monster" id="Toon Monster">
+                                    <label class="form-check-label ms-2" for="Toon Monster">
+                                      Toon Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Trap Card" id="Trap Card">
+                                    <label class="form-check-label ms-2" for="Trap Card">
+                                      Trap Card
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Tuner Monster" id="Tuner Monster">
+                                    <label class="form-check-label ms-2" for="Tuner Monster">
+                                      Tuner Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Union Effect Monster" id="Union Effect Monster">
+                                    <label class="form-check-label ms-2" for="Union Effect Monster">
+                                      Union Effect Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Fusion Monster" id="Fusion Monster">
+                                    <label class="form-check-label ms-2" for="Fusion Monster">
+                                      Fusion Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Link Monster" id="Link Monster">
+                                    <label class="form-check-label ms-2" for="Link Monster">
+                                      Link Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Pendulum Effect Fusion Monster" id="Pendulum Effect Fusion Monster">
+                                    <label class="form-check-label ms-2" for="Pendulum Effect Fusion Monster">
+                                      Pendulum Effect Fusion Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Synchro Monster" id="Synchro Monster">
+                                    <label class="form-check-label ms-2" for="Synchro Monster">
+                                      Synchro Monster
+                                    </label>
+                                </div>
+                            </div><div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Synchro Pendulum Effect Monster" id="Synchro Pendulum Effect Monster">
+                                    <label class="form-check-label ms-2" for="Synchro Pendulum Effect Monster">
+                                      Synchro Pendulum Effect Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="Synchro Tuner Monster" id="Synchro Tuner Monster">
+                                    <label class="form-check-label ms-2" for="Synchro Tuner Monster">
+                                      Synchro Tuner Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="XYZ Monster" id="XYZ Monster">
+                                    <label class="form-check-label ms-2" for="XYZ Monster">
+                                      XYZ Monster
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="type" type="checkbox" value="XYZ Pendulum Effect Monster" id="XYZ Pendulum Effect Monster">
+                                    <label class="form-check-label ms-2" for="XYZ Pendulum Effect Monster">
+                                      XYZ Pendulum Effect Monster
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-end">
+                            <!-- <div class="col-lg-10 col-md-8 col-9">
+                                <button class="btn btn-lg w-100 mt-3" type="submit"><i class="fas fa-search"></i> Search</button>
+                            </div> -->
+                            <div class="col-lg-2 col-md-4 col-3">
+                                <button class="btn btn-lg w-100 mt-3" type="reset"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container bg-flat my-5">
+        <div class="p-3">
+            <div class="d-none" id="loading-cards">
+                <div class="d-flex justify-content-center">
+                  <span class="visually-hidden text-primary fw-bold me-3">Loading...</span>
+                  <div class="spinner-border text-primary" style="width: 2rem; height: 2rem;" role="status">
+                  </div>
+                </div>
+            </div>
+            <!-- Data Card -->
+            <div class="row" id="ygo"></div>
+            <!-- End Data Card -->
+            <div class="mt-4 d-none">
+                <button class="btn w-100 btn-lg more">See More</button>
+            </div>
+        </div>
+    </div>
+    <!-- End Cards Info -->
+
+    <!-- My Js -->
+    <script src="js/cards.js" type="text/javascript"></script>
