@@ -27,6 +27,32 @@
 			return string
 		}
 
+		// load more click
+		function moreClick(action, num, keyword, type){
+			// Button See more
+			$('.more').click(function (e) {
+				e.preventDefault();
+				num = num + 60;
+				if(action == 'loadAllCard'){
+					loadAllCard(num, type);
+				}else if(action == 'loadName'){
+					if(keyword === ''){
+						loadAllCard();
+					}else {
+						loadName(num, keyword, type);
+					}
+				}else if(action == 'loadArchetype'){
+					if(keyword === ''){
+						loadAllCard()
+					}else {
+						loadArchetype(keyword);
+					}
+				}else {
+					loadAllCard();
+				}
+			});
+		}
+
 		// Get All Cards
 		function loadAllCard(num = 60, type = '') {
 			$('#result-length').parent().removeClass('d-none');
@@ -37,13 +63,6 @@
 			if (optionType == 'type=&') {
 				optionType = '';
 			}
-
-			// Button See more
-			$('.more').click(function (e) {
-				e.preventDefault();
-				num = num + 60;
-				loadAllCard(num, type);
-			});
 
 			$.ajax({
 				url: `https://db.ygoprodeck.com/api/v7/cardinfo.php?${optionType}num=${num}&offset=0`,
@@ -69,6 +88,7 @@
 						})
 					})
 
+					moreClick('loadAllCard', num, '', type);
 					loadClick();
 				},
 				error: (result) => {
@@ -118,6 +138,7 @@
 						})
 					})
 
+					moreClick('loadName', num, keyword, type);	
 					loadClick();
 				},
 				error: (result) => {
