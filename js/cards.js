@@ -235,6 +235,9 @@
 						if (attribute == 'DIVINE') {
 							attribute = '<img src="img/attribute/divine.png" class="ms-2 attribute">'
 						}
+						if(attribute === undefined) {
+							attribute = '';
+						}
 						let race = val.race;
 						let level = val.level;
 						let markLevel = '';
@@ -270,41 +273,79 @@
 							type = race;
 							symbol = '<img src="img/symbol/skill.png" style="width: 23px; height: 30px;">';
 						}
-						if (type == 'Spell Card' || type == 'Trap Card') {
-						
-						} else {
-							let forbiddenChars = [' ']
-							for (let char of forbiddenChars){
-							    type = type.split(char).join(' / ');
-							}
-						}
-						let desc = val.desc;
+						// if (type != 'Spell Card' || type != 'Trap Card') {
+						// 	let forbiddenChars = [' ']
+						// 	for (let char of forbiddenChars){
+						// 		console.log(type);
+						// 	    type = type.split(char).join(' / ');
+						// 	}
+						// }
+						let scale = val.scale;
+						let desc = val.desc.replace('----------------------------------------', '').replaceAll('[ Monster Effect ]', '<br><br/>[ Monster Effect ]');
 						let atk = val.atk;
 						let def = val.def;
 						let archetype = val.archetype;
 						$.each(val.card_images, function (i, val) {
 							if (level) {
-								$('#ygo').append(`
-								<div class="col-lg-3 col-md-4 col-12 mb-4">
-									<span class="visually-hidden">${url}</span>
-									<img src="${val.image_url}" class="img-fluid d-block mx-auto card-ygo">
-								</div>
-								<div class="col-lg-9 col-md-8 col-12 px-md-4 px-3 mb-4">
-									<h2 class="display-6 fw-bold text-prompt text-hidden text-primary d-flex justify-content-between align-items-center">${name} ${attribute}</h2>
-									<hr class="border border-primary border-2 my-0">
-									<div class="row">
-										<div class="col-12"><h2 class="text-hidden">${markLevel}</h2></div>
-								        <div class="col-lg-8 col-12">
-								        	<h2 class="fw-bold fs-5 text-muted text-hidden text-prompt" type>[ ${race} / ${type} ]</h2>
-								        </div>
-								        <div class="col-lg-4 col-12">
-								        	<span class="d-inline-block fw-bold fs-6 text-muted text-hidden float-lg-end">ATK/${atk}  DEF/${def}</span>
-								        </div>
-								    </div>
-									<p class="border border-2 border-primary p-2 desc">${desc}
-									</p>
-								</div>
-								`);
+								if(type.includes('Pendulum')) {
+
+									let splitDesc = desc.split('<br><br/>');
+
+									$('#ygo').append(`
+									<div class="col-lg-3 col-md-4 col-12 mb-4">
+										<span class="visually-hidden">${url}</span>
+										<img src="${val.image_url}" class="img-fluid d-block mx-auto card-ygo">
+									</div>
+									<div class="col-lg-9 col-md-8 col-12 px-md-4 px-3 mb-4">
+										<h2 class="display-6 fw-bold text-prompt text-hidden text-primary d-flex justify-content-between align-items-center">${name} ${attribute}</h2>
+										<hr class="border border-primary border-2 my-0">
+										<div class="row">
+											<div class="col-12"><h2 class="text-hidden">${markLevel}</h2></div>
+											<div class="col-lg-8 col-12">
+												<h2 class="fw-bold fs-5 text-muted text-hidden text-prompt" type>[ ${race} / ${type} ]</h2>
+											</div>
+											<div class="col-lg-4 col-12">
+												<span class="d-inline-block fw-bold fs-6 text-muted text-hidden float-lg-end">ATK/${atk}  DEF/${def}</span>
+											</div>
+										</div>
+										<div class="border border-2 border-primary p-2 col-pendulum">
+											<div class="d-flex justify-content-between align-items-center">
+												<div class="d-flex flex-column text-center px-1">
+													<img src="img/symbol/pendulum_scale_blue.png" style="width: 28px; height: 18px;">
+													<span>${scale}</span>
+												</div>
+												<div class="border border-2 border-primary p-2 overflow-auto desc-pendulum">${splitDesc[0]}</div>
+												<div class="d-flex flex-column text-center px-1">
+													<img src="img/symbol/pendulum_scale_red.png" style="width: 28px; height: 18px;">
+													<span>${scale}</span>
+												</div>
+											</div>
+										</div>
+										<div class="border border-2 border-primary p-2 desc">${splitDesc[1]}</div>
+									</div>
+									`);
+								} else {
+									$('#ygo').append(`
+									<div class="col-lg-3 col-md-4 col-12 mb-4">
+										<span class="visually-hidden">${url}</span>
+										<img src="${val.image_url}" class="img-fluid d-block mx-auto card-ygo">
+									</div>
+									<div class="col-lg-9 col-md-8 col-12 px-md-4 px-3 mb-4">
+										<h2 class="display-6 fw-bold text-prompt text-hidden text-primary d-flex justify-content-between align-items-center">${name} ${attribute}</h2>
+										<hr class="border border-primary border-2 my-0">
+										<div class="row">
+											<div class="col-12"><h2 class="text-hidden">${markLevel}</h2></div>
+											<div class="col-lg-8 col-12">
+												<h2 class="fw-bold fs-5 text-muted text-hidden text-prompt" type>[ ${race} / ${type} ]</h2>
+											</div>
+											<div class="col-lg-4 col-12">
+												<span class="d-inline-block fw-bold fs-6 text-muted text-hidden float-lg-end">ATK/${atk}  DEF/${def}</span>
+											</div>
+										</div>
+										<div class="border border-2 border-primary p-2 desc">${desc}</div>
+									</div>
+									`);
+								}
 							} else {
 								$('#ygo').append(`
 									<div class="col-lg-3 col-md-4 col-12 mb-4">
@@ -314,9 +355,9 @@
 									<div class="col-lg-9 col-md-8 col-12 px-md-4 px-3 mb-4 position-relative">
 										<h2 class="display-6 fw-bold text-prompt text-hidden text-primary d-flex justify-content-between align-items-center">${name} ${attribute}</h2>
 										<hr class="border border-primary border-2">
-										<p class="fw-bold fs-5 text-muted text-hidden text-prompt">[ ${type} ${symbol} ]</p>
-										<p class="border border-2 border-primary p-2 desc">${desc}
-										</p>
+										<div class="fw-bold fs-5 text-muted text-hidden text-prompt">[ ${type} ${symbol} ]</div>
+										<div class="border border-2 border-primary p-2 desc">${desc}
+										</div>
 									</div>
 									`);
 							}

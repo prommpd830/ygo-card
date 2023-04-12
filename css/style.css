@@ -276,9 +276,7 @@ body {
 }
 
 #filter .form-check-input:checked[type="checkbox"] {
-  background-image: url(
-    data:image/svg + xml,
-    %3csvgxmlns="http://www.w3.org/2000/svg"viewBox="0 0 20 20"%3e%3cpathfill="white"stroke="%23fff"stroke-linecap="round"stroke-linejoin="round"stroke-width="3"d="M6 10l3 3l6-6"/%3e%3c/svg%3e
+  background-image: url('data:image/svg + xml,%3csvgxmlns="http://www.w3.org/2000/svg"viewBox="0 0 20 20"%3e%3cpathfill="white"stroke="%23fff"stroke-linecap="round"stroke-linejoin="round"stroke-width="3"d="M6 10l3 3l6-6"/%3e%3c/svg%3e'
   );
 }
 
@@ -327,6 +325,20 @@ body {
   height: 200px;
   font-family: "Prompt", sans-serif;
   font-size: 16px;
+  color: var(--text-theme);
+}
+
+.desc-pendulum {
+  max-height: 80px;
+  height: 80px;
+}
+
+.col-pendulum {
+  overflow: hidden;
+  max-height: 100px;
+  height: 100px;
+  font-family: "Prompt", sans-serif;
+  font-size: 13px;
   color: var(--text-theme);
 }
 
@@ -390,6 +402,15 @@ footer {
     height: 140px;
     font-size: 17px;
   }
+  .desc-pendulum {
+    max-height: 70px;
+    height: 70px;
+  }
+  .col-pendulum {
+    max-height: 90px;
+    height: 90px;
+    font-size: 15px;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -407,5 +428,16 @@ footer {
     max-height: 210px;
     height: 210px;
     font-size: 20px;
+  }
+
+  .desc-pendulum {
+    max-height: 90px;
+    height: 90px;
+  }
+
+  .col-pendulum {
+    max-height: 110px;
+    height: 110px;
+    font-size: 15px;
   }
 }
