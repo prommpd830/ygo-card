@@ -10,6 +10,7 @@
 
 		function loadClick() {
 			// Get name card
+			$('#ygo .card-ygo').off('click');
 			$('#ygo .card-ygo').click(function () {
 				// let url = $(this).data('url');
 				let url = $(this).parent().find('span').text();
@@ -30,9 +31,11 @@
 		// load more click
 		function moreClick(action, num, keyword, type){
 			// Button See more
+			$('.more').off('click');
 			$('.more').click(function (e) {
 				e.preventDefault();
-				num = num + 60;
+
+				num += 60;
 				if(action == 'loadAllCard'){
 					loadAllCard(num, type);
 				}else if(action == 'loadName'){
@@ -371,17 +374,6 @@
 				loadArchetype(keyword);
 			}
 		})
-
-		// $('#form-filter').submit(function (e) {
-		// 	e.preventDefault();
-		// 	let type = '';
-		// 	$('#form-filter input[name="type"]:checked').each(function () {
-		// 		type += $(this).val()+',';
-		// 	})
-		// 	let remakeType = type.slice(0, type.length - 1);
-
-		// 	loadAllCard(60, remakeType);
-		// })
 
 		loadAllCard();
 
