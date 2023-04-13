@@ -285,16 +285,24 @@
 						let atk = val.atk;
 						let def = val.def;
 						let archetype = val.archetype;
-						$.each(val.card_images, function (i, val) {
+						$.each(val.card_images, function (i, card) {
 							if (level) {
 								if(type.includes('Pendulum')) {
 
 									let splitDesc = desc.split('<br><br/>');
+									splitDesc[0] = splitDesc[0].replaceAll('[ Pendulum Effect ]', '');
+
+									// desc for pendulum normal moster
+									if(splitDesc[1] === undefined) {
+										splitDesc[1] = val.desc.replace('----------------------------------------', '').replaceAll('[ Flavor Text ]', '<br><br/>[ Flavor Text ]').split('<br><br/>')[1].replaceAll('[ Flavor Text ]', '');
+									} else {
+										splitDesc[1] = splitDesc[1].replaceAll('[ Monster Effect ]');
+									}
 
 									$('#ygo').append(`
 									<div class="col-lg-3 col-md-4 col-12 mb-4">
 										<span class="visually-hidden">${url}</span>
-										<img src="${val.image_url}" class="img-fluid d-block mx-auto card-ygo">
+										<img src="${card.image_url}" class="img-fluid d-block mx-auto card-ygo">
 									</div>
 									<div class="col-lg-9 col-md-8 col-12 px-md-4 px-3 mb-4">
 										<h2 class="display-6 fw-bold text-prompt text-hidden text-primary d-flex justify-content-between align-items-center">${name} ${attribute}</h2>
@@ -328,7 +336,7 @@
 									$('#ygo').append(`
 									<div class="col-lg-3 col-md-4 col-12 mb-4">
 										<span class="visually-hidden">${url}</span>
-										<img src="${val.image_url}" class="img-fluid d-block mx-auto card-ygo">
+										<img src="${card.image_url}" class="img-fluid d-block mx-auto card-ygo">
 									</div>
 									<div class="col-lg-9 col-md-8 col-12 px-md-4 px-3 mb-4">
 										<h2 class="display-6 fw-bold text-prompt text-hidden text-primary d-flex justify-content-between align-items-center">${name} ${attribute}</h2>
@@ -350,7 +358,7 @@
 								$('#ygo').append(`
 									<div class="col-lg-3 col-md-4 col-12 mb-4">
 										<span class="visually-hidden">${url}</span>
-										<img src="${val.image_url}" class="img-fluid d-block mx-auto card-ygo">
+										<img src="${card.image_url}" class="img-fluid d-block mx-auto card-ygo">
 									</div>
 									<div class="col-lg-9 col-md-8 col-12 px-md-4 px-3 mb-4 position-relative">
 										<h2 class="display-6 fw-bold text-prompt text-hidden text-primary d-flex justify-content-between align-items-center">${name} ${attribute}</h2>
