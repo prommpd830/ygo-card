@@ -285,6 +285,7 @@
 						let atk = val.atk;
 						let def = val.def;
 						let archetype = val.archetype;
+						
 						$.each(val.card_images, function (i, card) {
 							if (level) {
 								if(type.includes('Pendulum')) {
@@ -296,8 +297,10 @@
 									if(splitDesc[1] === undefined) {
 										splitDesc[1] = val.desc.replace('----------------------------------------', '').replaceAll('[ Flavor Text ]', '<br><br/>[ Flavor Text ]').split('<br><br/>')[1].replaceAll('[ Flavor Text ]', '');
 									} else {
-										splitDesc[1] = splitDesc[1].replaceAll('[ Monster Effect ]');
+										splitDesc[1] = splitDesc[1].replaceAll('[ Monster Effect ]', '');
+										splitDesc[1] = splitDesc[1] === undefined ? '' : splitDesc[1];
 									}
+
 
 									$('#ygo').append(`
 									<div class="col-lg-3 col-md-4 col-12 mb-4">
