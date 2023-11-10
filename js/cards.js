@@ -29,7 +29,7 @@
 		}
 
 		// load more click
-		function moreClick(action, num, keyword, type){
+		function moreClick(action, num, keyword, type, attribute){
 			// Button See more
 			$('.more').off('click');
 			$('.more').click(function (e) {
@@ -37,12 +37,12 @@
 
 				num += 60;
 				if(action == 'loadAllCard'){
-					loadAllCard(num, type);
+					loadAllCard(num, type, attribute);
 				}else if(action == 'loadName'){
 					if(keyword === ''){
 						loadAllCard();
 					}else {
-						loadName(num, keyword, type);
+						loadName(num, keyword, type, attribute);
 					}
 				}else if(action == 'loadArchetype'){
 					if(keyword === ''){
@@ -57,7 +57,7 @@
 		}
 
 		// Get All Cards
-		function loadAllCard(num = 60, type = '') {
+		function loadAllCard(num = 60, type = '', attribute = '') {
 			$('#result-length').parent().removeClass('d-none');
 
 			// Filter Type
@@ -67,8 +67,15 @@
 				optionType = '';
 			}
 
+			// Filter Attribute
+			let optionAttribute = '';
+			optionAttribute += 'attribute='+ attribute +'&';
+			if (optionAttribute == 'attribute=&') {
+				optionAttribute = '';
+			}
+
 			$.ajax({
-				url: `https://db.ygoprodeck.com/api/v7/cardinfo.php?${optionType}num=${num}&offset=0`,
+				url: `https://db.ygoprodeck.com/api/v7/cardinfo.php?${optionType}${optionAttribute}num=${num}&offset=0`,
 				type: 'get',
 				dataType: 'json',
 				success: (result) => {
@@ -91,7 +98,7 @@
 						})
 					})
 
-					moreClick('loadAllCard', num, '', type);
+					moreClick('loadAllCard', num, '', type, attribute);
 					loadClick();
 				},
 				error: (result) => {
@@ -107,7 +114,7 @@
 		}
 
 		// Search by Name card
-		function loadName(num = 60, keyword, type = '') {
+		function loadName(num = 60, keyword, type = '', attribute = '') {
 			$('#result-length').parent().removeClass('d-none');
 
 			// Filter Type
@@ -117,8 +124,15 @@
 				optionType = '';
 			}
 
+			// Filter Attribute
+			let optionAttribute = '';
+			optionAttribute += 'attribute='+ attribute +'&';
+			if (optionAttribute == 'attribute=&') {
+				optionAttribute = '';
+			}
+
 			$.ajax({
-				url: `https://db.ygoprodeck.com/api/v7/cardinfo.php?${optionType}fname=${keyword}&num=${num}&offset=0`,
+				url: `https://db.ygoprodeck.com/api/v7/cardinfo.php?${optionType}${optionAttribute}fname=${keyword}&num=${num}&offset=0`,
 				type: 'get',
 				asyn: true,
 				dataType: 'json',
@@ -141,7 +155,7 @@
 						})
 					})
 
-					moreClick('loadName', num, keyword, type);	
+					moreClick('loadName', num, keyword, type, attribute);	
 					loadClick();
 				},
 				error: (result) => {
@@ -155,7 +169,6 @@
 				}
 			})
 		}
-
 
 		// Search by Archetype card
 		function loadArchetype(keyword) {
@@ -406,6 +419,13 @@
 			$('#ygo').html('');
 			let keyword = $(this).find('input[name="keyword"]').val();
 			let search = $(this).find('input[name="keyword"]').data('keyword');
+
+			let attribute = '';
+			$('#form-filter input[name="attribute"]:checked').each(function () {
+				attribute += $(this).val() +',';
+			})
+			let remakeAttribute = attribute.slice(0, attribute.length - 1);
+
 			let type = '';
 			$('#form-filter input[name="type"]:checked').each(function () {
 				type += $(this).val() +',';
@@ -414,12 +434,12 @@
 
 			// If keyword null
 			if (keyword === "") {
-				loadAllCard(60, remakeType);
+				loadAllCard(60, remakeType, remakeAttribute);
 				return false;
 			}
 			// Search for Name
 			if (search == 'name') {
-				loadName(60, keyword, remakeType);
+				loadName(60, keyword, remakeType, remakeAttribute);
 			}
 			// Search fo Archtype
 			if (search == 'archetype') {

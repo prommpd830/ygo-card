@@ -196,7 +196,7 @@ body {
 }
 
 #search input[type="search"] {
-  background: var(--bg-theme);
+  background: transparent;
   font-family: "Prompt", sans-serif;
   color: var(--text-theme);
   font-weight: bold;
@@ -226,7 +226,7 @@ body {
 #filter .accordion-item,
 #filter .accordion-button,
 #filter .accordion-body {
-  background: var(--bg-theme);
+  background: transparent;
   border-radius: 0;
   border: 1px solid var(--bs-primary);
 }
