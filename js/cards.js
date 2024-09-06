@@ -121,6 +121,7 @@
 				let url = $(this).parent().find('span').text();
 				$('#ygo').html('');
 				loadGetName(url);
+				$('.container-btn-back').removeClass('d-none');
 			})
 		}
 
@@ -604,6 +605,8 @@
 			if (search == 'archetype') {
 				loadArchetype(keyword);
 			}
+
+			$('.container-btn-back').addClass('d-none');
 		})
 		
 		// Form Filter Submit
@@ -652,7 +655,15 @@
 				if (search == 'archetype') {
 					loadArchetype(keyword);
 				}
-			}, 500);
+
+				$('.container-btn-back').addClass('d-none');
+			}, 700);
+		})
+
+		$('.btn-back').on('click', function(e){
+			e.preventDefault();
+
+			$('#search').trigger('submit');
 		})
 
 		// Change Logo YGO
