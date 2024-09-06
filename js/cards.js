@@ -378,6 +378,7 @@
 						}
 						let race = val.race;
 						let level = val.level;
+						let linkval = val.linkval;
 						let markLevel = '';
 						if (type == 'XYZ Monster' || type == 'XYZ Pendulum Effect Monster') {
 							for (let a = 0; a < level; a++) {
@@ -513,20 +514,43 @@
 									`);
 								}
 							} else {
-								$('#ygo').append(`
-									<div class="col-lg-3 col-md-4 col-12 mb-4 lightbox-container">
-										<span class="visually-hidden">${url}</span>
-										<img src="${card.image_url}" class="img-fluid d-block mx-auto">
-										${container_variant_img}
-									</div>
-									<div class="col-lg-9 col-md-8 col-12 px-md-4 px-3 mb-4 position-relative">
-										<h2 class="display-6 fw-bold text-prompt text-hidden text-primary d-flex justify-content-between align-items-center">${name} ${attribute}</h2>
-										<hr class="border border-primary border-2">
-										<div class="fw-bold fs-5 text-muted text-hidden text-prompt">[ ${type} ${symbol} ]</div>
-										<div class="border border-2 border-primary p-2 desc">${desc}
+								if(linkval) {
+
+									$('#ygo').append(`
+										<div class="col-lg-3 col-md-4 col-12 mb-4 lightbox-container">
+											<span class="visually-hidden">${url}</span>
+											<img src="${card.image_url}" class="img-fluid d-block mx-auto">
+											${container_variant_img}
 										</div>
-									</div>
-									`);
+										<div class="col-lg-9 col-md-8 col-12 px-md-4 px-3 mb-4">
+											<h2 class="display-6 fw-bold text-prompt text-hidden text-primary d-flex justify-content-between align-items-center">${name} ${attribute}</h2>
+											<hr class="border border-primary border-2 my-0">
+											<div class="row mt-3">
+												<div class="col-lg-8 col-12">
+													<h2 class="fw-bold fs-5 text-muted text-hidden text-prompt" type>[ ${race} / ${type} ]</h2>
+												</div>
+												<div class="col-lg-4 col-12">
+													<span class="d-inline-block fw-bold fs-6 text-muted text-hidden float-lg-end">ATK/${atk}  <span class="text-uppercase font-jetbrains-mono fw-bolder text-primary text-mono">LINK - ${linkval}</span></span>
+												</div>
+											</div>
+											<div class="border border-2 border-primary p-2 desc">${desc}</div>
+										</div>
+										`);
+								} else {
+									$('#ygo').append(`
+										<div class="col-lg-3 col-md-4 col-12 mb-4 lightbox-container">
+											<span class="visually-hidden">${url}</span>
+											<img src="${card.image_url}" class="img-fluid d-block mx-auto">
+											${container_variant_img}
+										</div>
+										<div class="col-lg-9 col-md-8 col-12 px-md-4 px-3 mb-4 position-relative">
+											<h2 class="display-6 fw-bold text-prompt text-hidden text-primary d-flex justify-content-between align-items-center">${name} ${attribute}</h2>
+											<hr class="border border-primary border-2">
+											<div class="fw-bold fs-5 text-muted text-hidden text-prompt">[ ${type} ${symbol} ]</div>
+											<div class="border border-2 border-primary p-2 desc">${desc}</div>
+										</div>
+										`);
+								}
 							}
 
 							if (i == 0) {
@@ -592,6 +616,8 @@
 			})
 			let remakeFormat = format.slice(0, format.length - 1);
 
+			$('.container-btn-back').addClass('d-none');
+
 			// If keyword null
 			if (keyword === "") {
 				loadAllCard(60, remakeType, remakeAttribute, remakeFormat);
@@ -606,7 +632,6 @@
 				loadArchetype(keyword);
 			}
 
-			$('.container-btn-back').addClass('d-none');
 		})
 		
 		// Form Filter Submit
@@ -642,6 +667,7 @@
 				})
 				let remakeFormat = format.slice(0, format.length - 1);
 
+				$('.container-btn-back').addClass('d-none');
 				// If keyword null
 				if (keyword === "") {
 					loadAllCard(60, remakeType, remakeAttribute, remakeFormat);
@@ -656,7 +682,6 @@
 					loadArchetype(keyword);
 				}
 
-				$('.container-btn-back').addClass('d-none');
 			}, 700);
 		})
 
